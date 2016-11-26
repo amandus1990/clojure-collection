@@ -44,4 +44,4 @@
     .pack
     (.setVisible true)))
 
-(draw 80 80 (maze (grid 80 80)))
+(draw 40 40 (maze (grid 40 40)))
