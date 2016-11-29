@@ -7,7 +7,7 @@ gem install em-websocket
 ```
 来解决问题
 
-不知为何，打开文件一定要在root用户中通过
+不知为何，打开程序一定要在root用户中通过
 ```bash
 nohup ./beef &
 ```
