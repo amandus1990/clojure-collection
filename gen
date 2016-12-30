@@ -1,8 +1,3 @@
-SeedLength = RandomInteger[{6, 12}];
-SeedList = 
- Table[RandomChoice[{0.2, 0.8} -> {x, 
-     RandomInteger[{-300, 300}]}], {SeedLength}];
-
 ListRandomPlus[SeedList_] := 
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
   If[Length[SeedList] > 1,
@@ -34,6 +29,11 @@ ListRandomDivide[SeedList_] :=
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
   If[Length[SeedList] > 1,
    pick = RandomSample[Range[Length[SeedList]], 2];
+   If[NumberQ[SeedList[[pick[[2]]]]],
+    If[SeedList[[pick[[2]]]] == 0,
+     Return[SeedList]
+     ]
+    ];
    resoperate = Divide[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
    AppendTo[reslist, resoperate],
@@ -43,15 +43,25 @@ ListRandomPower[SeedList_] :=
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
   If[Length[SeedList] > 1,
    pick = RandomSample[Range[Length[SeedList]], 2];
+   If[NumberQ[SeedList[[pick[[2]]]]],
+    If[SeedList[[pick[[2]]]] > 3,
+     Return[SeedList]
+     ]
+    ];
    resoperate = Power[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
    AppendTo[reslist, resoperate],
-   SeedList]
+   Return[SeedList]]
   ]
 ListRandomLog[SeedList_] := 
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
   If[Length[SeedList] > 1,
    pick = RandomSample[Range[Length[SeedList]], 2];
+   If[(NumberQ[SeedList[[pick[[1]]]]] && 
+       SeedList[[pick[[1]]]] <= 0) || (NumberQ[
+        SeedList[[pick[[2]]]]] && SeedList[[pick[[2]]]] <= 0),
+    Return[SeedList]
+    ];
    resoperate = Log[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
    AppendTo[reslist, resoperate],
@@ -75,4 +85,18 @@ ListRandomCos[SeedList_] :=
    AppendTo[reslist, resoperate],
    SeedList]
   ]
-  
+
+SeedLength = RandomInteger[{7, 13}];
+SeedList = 
+ Table[RandomChoice[{5, 16, 1, 1} -> {x, RandomInteger[{-300, 300}], 
+     Pi, E}], {SeedLength}]
+     
+While[Length[SeedList] > 1,
+ SeedList = 
+  RandomChoice[{10, 10, 10, 10, 10, 10, 10, 10} -> {ListRandomPlus, 
+      ListRandomSubtract, ListRandomTimes, ListRandomDivide, 
+      ListRandomPower, ListRandomLog, ListRandomSin, 
+      ListRandomCos}] @@ {SeedList
+    }]
+    
+D[SeedList[[1]], x]
