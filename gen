@@ -99,4 +99,8 @@ While[Length[SeedList] > 1,
       ListRandomCos}] @@ {SeedList
     }]
     
+ 
+MatchQ[SeedList[[1]], x]
+SeedList[[1]]
+    
 D[SeedList[[1]], x]
