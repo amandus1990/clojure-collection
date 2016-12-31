@@ -1,3 +1,4 @@
+(* Differential and integral operation trainer *)
 ListRandomPlus[SeedList_] := 
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
    numberstringlength = 7, numberrange = 1000}, 
@@ -129,29 +130,29 @@ questions = {FindAProperQuestion[], FindAProperQuestion[],
    FindAProperQuestion[], FindAProperQuestion[], 
    FindAProperQuestion[], FindAProperQuestion[], 
    FindAProperQuestion[], FindAProperQuestion[]};
-questionsstring = " ";
-Do[questionsstring = 
-  StringJoin[questionsstring, "Find the derivative for:", 
+questionsandanswersstring = "";
+Do[questionsandanswersstring = 
+  StringJoin[questionsandanswersstring, "Find the derivative for:", 
    "\\begin{equation}", ToString[TeXForm[questions[[i]][[1]]]], 
    "\\end{equation}"], {i, 1, Length[questions] - 4}]
-Do[questionsstring = 
-  StringJoin[questionsstring, "Find the integral for:", 
+Do[questionsandanswersstring = 
+  StringJoin[questionsandanswersstring, "Find the integral for:", 
    "\\begin{equation}", ToString[TeXForm[questions[[i]][[3]]]], 
    "\\end{equation}"], {i, Length[questions] - 3, Length[questions]}]
-answersstring = "";
-Do[answersstring = 
-  StringJoin[answersstring, "For the function:", "\\begin{equation}", 
-   ToString[TeXForm[questions[[i]][[1]]]], "\\end{equation}", 
-   "the derivative should be:", "$$", 
+questionsandanswersstring = 
+  StringJoin[questionsandanswersstring, "\n\n\n"];
+Do[questionsandanswersstring = 
+  StringJoin[questionsandanswersstring, "For the function:", 
+   "\\begin{equation}", ToString[TeXForm[questions[[i]][[1]]]], 
+   "\\end{equation}", "the derivative should be:", "$$", 
    ToString[TeXForm[questions[[i]][[3]]]], "$$"], {i, 1, 
   Length[questions] - 4}]
-Do[answersstring = 
-  StringJoin[answersstring, "For the function:", "\\begin{equation}", 
-   ToString[TeXForm[questions[[i]][[3]]]], "\\end{equation}", 
-   "the integral should be:", "$$", 
+Do[questionsandanswersstring = 
+  StringJoin[questionsandanswersstring, "For the function:", 
+   "\\begin{equation}", ToString[TeXForm[questions[[i]][[3]]]], 
+   "\\end{equation}", "the integral should be:", "$$", 
    ToString[TeXForm[questions[[i]][[1]]]], "$$"], {i, 
   Length[questions] - 3, Length[questions]}]
   
     
-Export["D:\\questionsstring.txt", questionsstring]
-Export["D:\\answersstring.txt", answersstring]
+Export["D:\\questionsandanswersstring.txt", questionsandanswersstring]
