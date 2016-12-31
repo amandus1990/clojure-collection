@@ -1,106 +1,137 @@
 ListRandomPlus[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
    pick = RandomSample[Range[Length[SeedList]], 2];
    resoperate = Plus[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
+   If[NumberQ[resoperate] && 
+     StringLength[ToString[resoperate]] > numberstringlength, 
+    resoperate = RandomInteger[{-numberrange, numberrange}]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomSubtract[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
    pick = RandomSample[Range[Length[SeedList]], 2];
    resoperate = Subtract[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
+   If[NumberQ[resoperate] && 
+     StringLength[ToString[resoperate]] > numberstringlength, 
+    resoperate = RandomInteger[{-numberrange, numberrange}]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomTimes[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
    pick = RandomSample[Range[Length[SeedList]], 2];
    resoperate = Times[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
+   If[NumberQ[resoperate] && 
+     StringLength[ToString[resoperate]] > numberstringlength, 
+    resoperate = RandomInteger[{-numberrange, numberrange}]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomDivide[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
    pick = RandomSample[Range[Length[SeedList]], 2];
-   If[NumberQ[SeedList[[pick[[2]]]]],
-    If[SeedList[[pick[[2]]]] == 0,
-     Return[SeedList]
-     ]
-    ];
+   If[NumberQ[SeedList[[pick[[2]]]]], 
+    If[SeedList[[pick[[2]]]] == 0, Return[SeedList]]];
    resoperate = Divide[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
+   If[NumberQ[resoperate] && 
+     StringLength[ToString[resoperate]] > numberstringlength, 
+    resoperate = RandomInteger[{-numberrange, numberrange}]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomPower[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
-   pick = RandomSample[Range[Length[SeedList]], 2];
-   If[NumberQ[SeedList[[pick[[2]]]]],
-    If[SeedList[[pick[[2]]]] > 3,
-     Return[SeedList]
-     ]
-    ];
-   resoperate = Power[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
-   reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   Return[SeedList]]
-  ]
-ListRandomLog[SeedList_] := 
- Module[{pick = {1, 2}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 1,
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
    pick = RandomSample[Range[Length[SeedList]], 2];
    If[(NumberQ[SeedList[[pick[[1]]]]] && 
        SeedList[[pick[[1]]]] <= 0) || (NumberQ[
-        SeedList[[pick[[2]]]]] && SeedList[[pick[[2]]]] <= 0),
-    Return[SeedList]
-    ];
+        SeedList[[pick[[2]]]]] && SeedList[[pick[[2]]]] > 3), 
+    Return[SeedList]];
+   resoperate = Power[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
+   If[NumberQ[resoperate] && 
+     StringLength[ToString[resoperate]] > numberstringlength, 
+    resoperate = RandomInteger[{-numberrange, numberrange}]];
+   reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
+   AppendTo[reslist, resoperate], Return[SeedList]]
+  ]
+ListRandomLog[SeedList_] := 
+ Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
+   numberstringlength = 7, numberrange = 1000}, 
+  If[Length[SeedList] > 1, 
+   pick = RandomSample[Range[Length[SeedList]], 2];
+   If[(NumberQ[SeedList[[pick[[1]]]]] && 
+       SeedList[[pick[[1]]]] <= 0) || (NumberQ[
+        SeedList[[pick[[2]]]]] && SeedList[[pick[[2]]]] <= 0), 
+    Return[SeedList]];
    resoperate = Log[SeedList[[pick[[1]]]], SeedList[[pick[[2]]]]];
    reslist = Delete[SeedList, {{pick[[1]]}, {pick[[2]]}}];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomSin[SeedList_] := 
- Module[{pick = {1}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 0,
+ Module[{pick = {1}, resoperate = {}, reslist = {}}, 
+  If[Length[SeedList] > 0, 
    pick = RandomSample[Range[Length[SeedList]], 1];
    resoperate = Sin[SeedList[[pick[[1]]]]];
    reslist = Delete[SeedList, pick[[1]]];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
 ListRandomCos[SeedList_] := 
- Module[{pick = {1}, resoperate = {}, reslist = {}},
-  If[Length[SeedList] > 0,
+ Module[{pick = {1}, resoperate = {}, reslist = {}}, 
+  If[Length[SeedList] > 0, 
    pick = RandomSample[Range[Length[SeedList]], 1];
    resoperate = Cos[SeedList[[pick[[1]]]]];
    reslist = Delete[SeedList, pick[[1]]];
-   AppendTo[reslist, resoperate],
-   SeedList]
+   AppendTo[reslist, resoperate], SeedList]
   ]
-
-SeedLength = RandomInteger[{7, 13}];
+    
+    
+PrimitiveAndDerivativeGenerator[] := 
+  Module[{SeedLength = 0, SeedList = {}, x, primitive = 12, 
+    derivative = 12},
+   SeedLength = RandomInteger[{4, 7}];
+   SeedList = 
+    Table[RandomChoice[{8, 30, 1, 1} -> {x, 
+        RandomInteger[{-300, 300}], Pi, E}], {SeedLength}]; 
+   AppendTo[SeedList, x];
+   
+   While[Length[SeedList] > 1, 
+    SeedList = 
+     RandomChoice[{10, 10, 10, 10, 10, 10, 3, 3} -> {ListRandomPlus, 
+         ListRandomSubtract, ListRandomTimes, ListRandomDivide, 
+         ListRandomPower, ListRandomLog, ListRandomSin, 
+         ListRandomCos}] @@ {SeedList}];
+   
+   primitive = SeedList[[1]];
+   derivative = D[primitive, x];
+   Return[{primitive, StringLength[ToString[primitive]], derivative, 
+     StringLength[ToString[derivative]]}]
+   ];
+    
+    
+    
+SeedLength = RandomInteger[{4, 7}];
 SeedList = 
- Table[RandomChoice[{5, 16, 1, 1} -> {x, RandomInteger[{-300, 300}], 
-     Pi, E}], {SeedLength}]
-     
-While[Length[SeedList] > 1,
- SeedList = 
-  RandomChoice[{10, 10, 10, 10, 10, 10, 10, 10} -> {ListRandomPlus, 
-      ListRandomSubtract, ListRandomTimes, ListRandomDivide, 
-      ListRandomPower, ListRandomLog, ListRandomSin, 
-      ListRandomCos}] @@ {SeedList
-    }]
-    
- 
-MatchQ[SeedList[[1]], x]
-SeedList[[1]]
-    
-D[SeedList[[1]], x]
+ Table[RandomChoice[{8, 30, 1, 1} -> {x, RandomInteger[{-300, 300}], 
+     Pi, E}], {SeedLength}]; AppendTo[SeedList, x];
+
+While[Length[SeedList] > 1, 
+  SeedList = 
+   RandomChoice[{10, 10, 10, 10, 10, 10, 3, 3} -> {ListRandomPlus, 
+       ListRandomSubtract, ListRandomTimes, ListRandomDivide, 
+       ListRandomPower, ListRandomLog, ListRandomSin, 
+       ListRandomCos}] @@ {SeedList}];
+
+primitive = SeedList[[1]];
+derivative = D[primitive, x];
+{primitive, StringLength[ToString[primitive]], derivative, 
+ StringLength[ToString[derivative]]}
