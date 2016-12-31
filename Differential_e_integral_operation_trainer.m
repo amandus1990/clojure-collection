@@ -1,4 +1,6 @@
 (* Differential and integral operation trainer *)
+(* 宣传语：微分、积分训练器，想做几题出几题！妈妈的好帮手，孩子的好老师！*)
+
 ListRandomPlus[SeedList_] := 
  Module[{pick = {1, 2}, resoperate = {}, reslist = {}, 
    numberstringlength = 7, numberrange = 1000}, 
