@@ -103,7 +103,7 @@ PrimitiveAndDerivativeGenerator[] :=
    AppendTo[SeedList, x];
    While[Length[SeedList] > 1, 
     SeedList = 
-     RandomChoice[{10, 10, 10, 10, 10, 10, 3, 3} -> {ListRandomPlus, 
+     RandomChoice[{10, 10, 10, 10, 10, 10, 2, 2} -> {ListRandomPlus, 
          ListRandomSubtract, ListRandomTimes, ListRandomDivide, 
          ListRandomPower, ListRandomLog, ListRandomSin, 
          ListRandomCos}] @@ {SeedList}];
