@@ -1,6 +1,6 @@
 Interesting
 ================
 
-Markov information source
-Entropy rate
-Kullback–Leibler divergence
+* Markov information source
+* Entropy rate
+* Kullback–Leibler divergence
