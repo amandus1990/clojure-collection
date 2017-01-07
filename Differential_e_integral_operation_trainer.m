@@ -157,4 +157,6 @@ Do[questionsandanswersstring =
   Length[questions] - 3, Length[questions]}]
   
     
+Directory[]
+SetDirectory[]
 Export["D:\\questionsandanswersstring.txt", questionsandanswersstring]
